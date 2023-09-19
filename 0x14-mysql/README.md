@@ -1,1 +1,1 @@
-this read me file for sql in servier
+.this read me file for sql in servier
