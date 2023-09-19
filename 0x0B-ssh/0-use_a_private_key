@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
-# Connects to server 54.224.40.59 with key in ~/.ssh/school
-
-ssh -i ~/.ssh/school ubuntu@54.224.40.59
+# Connects to the remote server using SSH and the private key
+# SSH single-character flags used:
+# -i: Specifies the identity file (private key)
+# -o: Specifies options, like disabling strict host key checking
+# -q: Quiet mode (no banner displayed)
+# Connect to the remote server using SSH and the private key
+ssh -i ~/.ssh/school ubuntu@34.202.159.9
