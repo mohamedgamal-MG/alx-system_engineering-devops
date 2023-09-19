@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
-# Configure SSH client
-# Set correct permissions for the SSH configuration file
-# SSH Config File
-#
-Host 272808-web-01
-	Hostname 107.21.30.137
-	User ubuntu
-	PasswordAuthentication no
-	IdentityFile ~/.ssh/school
+
+# Create or edit the SSH client configuration file
+touch ~/.ssh/config
+
+# Add configuration to the SSH client file
+echo "Host *
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no" > ~/.ssh/config
+
+# Display a success message
+echo "SSH client configuration updated successfully."
+
