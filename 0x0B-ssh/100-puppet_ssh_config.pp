@@ -3,6 +3,8 @@
 
 include stdlib
 
+class { 'stdlib': }
+
 file_line { 'SSH Private Key Configuration':
   path               => '/etc/ssh/ssh_config',
   line               => '    IdentityFile ~/.ssh/school',

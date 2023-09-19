@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
-
-# Create or edit the SSH client configuration file
-touch ~/.ssh/config
-
-# Add configuration to the SSH client file
-echo "Host *
-    IdentityFile ~/.ssh/school
-    PasswordAuthentication no" > ~/.ssh/config
-
-# Display a success message
-echo "SSH client configuration updated successfully."
-
+# Client configuration file
+Host default
+  HostName 34.202.159.9
+  User ubuntu
+  Port 22
+  PasswordAuthentication betty
+  IdentityFile ~/.ssh/school
