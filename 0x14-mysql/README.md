@@ -1,1 +1,1 @@
-This is read me for 0x14-mysql
+.this read me file for sql in servier

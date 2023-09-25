@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
-# Configure SSH client
-# Set correct permissions for the SSH configuration file
-# SSH Config File
-#
-Host 272808-web-01
-	Hostname 107.21.30.137
-	User ubuntu
-	PasswordAuthentication no
-	IdentityFile ~/.ssh/school
+# Client configuration file
+Host default
+  HostName 34.202.159.9
+  User ubuntu
+  Port 22
+  PasswordAuthentication betty
+  IdentityFile ~/.ssh/school
