@@ -1,0 +1,48 @@
+[34m
+* Datadog Agent 7 install script v1.23.0
+[0m
+[34m
+* Installing apt-transport-https, curl and gnupg
+[0m
+Hit http://security.ubuntu.com trusty-security InRelease
+Get:1 http://repo.mysql.com trusty InRelease [34.0 kB]
+Ign http://archive.ubuntu.com trusty InRelease
+Hit http://archive.ubuntu.com trusty-updates InRelease
+Hit http://archive.ubuntu.com trusty-backports InRelease
+Hit http://archive.ubuntu.com trusty Release.gpg
+Hit http://archive.ubuntu.com trusty Release
+Hit http://security.ubuntu.com trusty-security/main amd64 Packages
+Ign http://repo.mysql.com trusty InRelease
+Hit http://security.ubuntu.com trusty-security/restricted amd64 Packages
+Hit http://security.ubuntu.com trusty-security/universe amd64 Packages
+Hit http://security.ubuntu.com trusty-security/multiverse amd64 Packages
+Hit http://repo.mysql.com trusty/mysql-5.7-dmr amd64 Packages
+Hit http://archive.ubuntu.com trusty-updates/main amd64 Packages
+Hit http://archive.ubuntu.com trusty-updates/restricted amd64 Packages
+Hit http://archive.ubuntu.com trusty-updates/universe amd64 Packages
+Hit http://archive.ubuntu.com trusty-updates/multiverse amd64 Packages
+Hit http://archive.ubuntu.com trusty/main amd64 Packages
+Hit http://archive.ubuntu.com trusty/restricted amd64 Packages
+Hit http://archive.ubuntu.com trusty/universe amd64 Packages
+Hit http://archive.ubuntu.com trusty/multiverse amd64 Packages
+Get:2 https://esm.ubuntu.com trusty-infra-security InRelease
+Hit http://archive.ubuntu.com trusty-backports/main amd64 Packages
+Get:3 https://esm.ubuntu.com trusty-infra-updates InRelease
+Get:4 https://deb.nodesource.com trusty InRelease
+Hit http://archive.ubuntu.com trusty-backports/restricted amd64 Packages
+Hit http://archive.ubuntu.com trusty-backports/universe amd64 Packages
+Hit http://archive.ubuntu.com trusty-backports/multiverse amd64 Packages
+Hit https://esm.ubuntu.com trusty-infra-security/main amd64 Packages
+Ign https://deb.nodesource.com trusty InRelease
+Hit https://deb.nodesource.com trusty/main Sources
+Hit https://esm.ubuntu.com trusty-infra-updates/main amd64 Packages
+Hit https://deb.nodesource.com trusty/main amd64 Packages
+Fetched 53.5 kB in 14s (3566 B/s)
+Reading package lists...
+W: GPG error: http://repo.mysql.com trusty InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 467B942D3A79BD29
+W: GPG error: https://deb.nodesource.com trusty InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 1655A0AB68576280
+W: Duplicate sources.list entry http://archive.ubuntu.com/ubuntu/ trusty-backports/main amd64 Packages (/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_trusty-backports_main_binary-amd64_Packages.gz)
+W: Duplicate sources.list entry http://archive.ubuntu.com/ubuntu/ trusty-backports/restricted amd64 Packages (/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_trusty-backports_restricted_binary-amd64_Packages.gz)
+W: Duplicate sources.list entry http://archive.ubuntu.com/ubuntu/ trusty-backports/universe amd64 Packages (/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_trusty-backports_universe_binary-amd64_Packages.gz)
+W: Duplicate sources.list entry http://archive.ubuntu.com/ubuntu/ trusty-backports/multiverse amd64 Packages (/var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_trusty-backports_multiverse_binary-amd64_Packages.gz)
+Reading package lists...
