@@ -1,81 +1,54 @@
 #!/usr/bin/python3
-"""
-recursive function that queries the Reddit API, parses the title of all hot
-articles, and prints a sorted count of given keywords (case-insensitive,
-delimited by spaces.Javascript should count as javascript, but java should not
-"""
+""" raddit api"""
 
+import json
 import requests
 
 
-def count_words(subreddit, word_list, results=None, after=None):
-    """
-    Recursively queries the Reddit API, parses the titles of hot articles,
-    and prints a sorted count of given keywords.
+def count_words(subreddit, word_list, after="", count=[]):
+    """count all words"""
 
-    Args:
-        subreddit (str): The name of the subreddit to query.
-        word_list (list): A list of keywords to count.
-        results (dict): A dictionary to store the keyword counts
-        (initially empty).after (str): The "after" parameter to paginate
-        through results(initially None).
+    if after == "":
+        count = [0] * len(word_list)
 
-    Returns:
-        None
-    """
-    if results is None:
-        results = {}
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
+    request = requests.get(url,
+                           params={'after': after},
+                           allow_redirects=False,
+                           headers={'user-agent': 'bhalut'})
 
-    url = "https://www.reddit.com/r/{}/hot.json?limit=100".format(subreddit)
-    if after is not None:
-        url += "&after={}".format(after)
+    if request.status_code == 200:
+        data = request.json()
 
-    headers = {
-        "User-Agent": "MyRedditBot/1.0 (by YourUsername)"
-    }
+        for topic in (data['data']['children']):
+            for word in topic['data']['title'].split():
+                for i in range(len(word_list)):
+                    if word_list[i].lower() == word.lower():
+                        count[i] += 1
 
-    response = requests.get(url, headers=headers)
+        after = data['data']['after']
+        if after is None:
+            save = []
+            for i in range(len(word_list)):
+                for j in range(i + 1, len(word_list)):
+                    if word_list[i].lower() == word_list[j].lower():
+                        save.append(j)
+                        count[i] += count[j]
 
-    if response.status_code == 200:
-        data = response.json()
+            for i in range(len(word_list)):
+                for j in range(i, len(word_list)):
+                    if (count[j] > count[i] or
+                            (word_list[i] > word_list[j] and
+                             count[j] == count[i])):
+                        aux = count[i]
+                        count[i] = count[j]
+                        count[j] = aux
+                        aux = word_list[i]
+                        word_list[i] = word_list[j]
+                        word_list[j] = aux
 
-        posts = data["data"]["children"]
-        for post in posts:
-            title = post["data"]["title"]
-            words = title.split()
-            for word in words:
-                word = word.lower()
-                word = word.strip('.,!?()[]{}"\'')
-                if word in word_list:
-                    if word in results:
-                        results[word] += 1
-                    else:
-                        results[word] = 1
-        after = data["data"]["after"]
-        if after is not None:
-            return count_words(subreddit, word_list, results, after)
+            for i in range(len(word_list)):
+                if (count[i] > 0) and i not in save:
+                    print("{}: {}".format(word_list[i].lower(), count[i]))
         else:
-            print_results(results)
-    else:
-        pass
-
-def print_results(results):
-    """
-    Prints the sorted count of keywords from the results dictionary.
-
-    Args:
-        results (dict): A dictionary containing keyword counts.
-    """
-    sorted_results = sorted(results.items(), key=lambda x: (-x[1], x[0]))
-    for word, count in sorted_results:
-       print("{}: {}".format(word, count))
-
-if __name__ == "__main__":
-    import sys
-    if len(sys.argv) < 3:
-        print("Usage: {} <subreddit> <list of keywords>".format(sys.argv[0]))
-        print("Ex: {} programming 'python java javascript'".format(sys.argv[0]))
-    else:
-        subreddit_name = sys.argv[1]
-        keyword_list = [x.lower() for x in sys.argv[2].split()]
-        count_words(subreddit_name, keyword_list)
+            count_words(subreddit, word_list, after, count)
