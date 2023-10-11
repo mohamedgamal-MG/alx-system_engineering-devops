@@ -26,7 +26,7 @@ def count_words(subreddit, word_list, results=None, after=None):
     if results is None:
         results = {}
 
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=100"
+    url = "https://www.reddit.com/r/{}/hot.json?limit=100".format(subreddit)
     if after is not None:
         url += f"&after={after}"
 
