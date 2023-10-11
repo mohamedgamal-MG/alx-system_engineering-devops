@@ -28,7 +28,7 @@ def count_words(subreddit, word_list, results=None, after=None):
 
     url = "https://www.reddit.com/r/{}/hot.json?limit=100".format(subreddit)
     if after is not None:
-        url += f"&after={after}"
+        url += "&after={}".format(after)
 
     headers = {
         "User-Agent": "MyRedditBot/1.0 (by YourUsername)"
